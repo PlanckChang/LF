@@ -82,7 +82,8 @@ def main():
 
     opt.device = torch.device('cuda:'+str(opt.cuda) if torch.cuda.is_available() else 'cpu')
     # device = torch.device('cuda:'+str(opt.cuda) if torch.cuda.is_available() else 'cpu')
-#     opt.device = torch.device('cpu')
+    if opt.device == -1:
+        opt.device = torch.device('cpu')
     device = opt.device
     # generate save folder
     if not os.path.exists('save_results'):
