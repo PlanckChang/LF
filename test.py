@@ -49,7 +49,7 @@ parser.add_argument("--std_thres", type=float, default=0.3)
 parser.add_argument("--test_data", type=str, default="", help="dataset for test")
 parser.add_argument("--test_path", type=str, default="./LFData/test_data_HCI_RGB", help="dataset for test")
 
-parser.add_argument("--cuda", type=int, default=1, help="specify GPU")
+parser.add_argument("--cuda", type=int, default=0, help="specify GPU")
 parser.add_argument("--test_batch_size", type=int, default=1)
 parser.add_argument("--net_name", type=str, default="jingjin_LF_10-5", help="net name with epoch")
 parser.add_argument("--epoch", type=int, default=520, help="test epoch")
@@ -80,10 +80,10 @@ def write_pfm(data, fpath, scale=1, file_identifier=b'Pf', dtype="float32"):
 def main():
     # Device configuration
 
-    # opt.device = torch.device('cuda:'+str(opt.cuda) if torch.cuda.is_available() else 'cpu')
+    opt.device = torch.device('cuda:'+str(opt.cuda) if torch.cuda.is_available() else 'cpu')
     # device = torch.device('cuda:'+str(opt.cuda) if torch.cuda.is_available() else 'cpu')
-    opt.device = torch.device('cpu')
-    device = torch.device('cpu')
+#     opt.device = torch.device('cpu')
+    device = opt.device
     # generate save folder
     if not os.path.exists('save_results'):
         os.makedirs('save_results')
